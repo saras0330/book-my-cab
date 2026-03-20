@@ -1,0 +1,16 @@
+packages:
+  "framer-motion": "For smooth scroll animations and entry reveals"
+  "clsx": "For conditional class name merging"
+  "tailwind-merge": "For merging tailwind classes safely"
+
+images:
+  - path: "artifacts/bookmycab/public/images/logo.png"
+    description: "Minimalist modern geometric taxi logo icon, bold yellow and black colors, completely transparent background"
+    aspect_ratio: "1:1"
+  - path: "artifacts/bookmycab/public/images/hero-bg.png"
+    description: "Abstract subtle geometric map network background in dark slate gray and black, with glowing yellow nodes and soft light leaks, futuristic transportation concept"
+    aspect_ratio: "16:9"
+
+notes:
+  - This is primarily a marketing landing page, so there is no complex backend state management needed for the initial render.
+  - The booking widget in the hero section maintains local state for the UI demo but does not submit to an API.
