@@ -2,58 +2,76 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { AnimatedSection } from "../AnimatedSection";
 
 const routes = [
-  { from: "Delhi", to: "Agra", price: "2,499", km: "233 km" },
-  { from: "Mumbai", to: "Pune", price: "1,999", km: "148 km" },
-  { from: "Bangalore", to: "Mysore", price: "2,199", km: "144 km" },
-  { from: "Chennai", to: "Pondicherry", price: "2,899", km: "162 km" },
-  { from: "Delhi", to: "Jaipur", price: "3,499", km: "281 km" },
-  { from: "Hyderabad", to: "Vijayawada", price: "3,999", km: "275 km" },
-  { from: "Kolkata", to: "Digha", price: "2,599", km: "187 km" },
-  { from: "Ahmedabad", to: "Surat", price: "2,299", km: "265 km" },
-  { from: "Ahmedabad", to: "Vadodara", price: "1,799", km: "113 km" },
-  { from: "Ahmedabad", to: "Rajkot", price: "2,199", km: "216 km" },
-  { from: "Vadodara", to: "Surat", price: "1,699", km: "154 km" },
-  { from: "Jaipur", to: "Jodhpur", price: "3,199", km: "342 km" },
-  { from: "Pune", to: "Goa", price: "4,999", km: "456 km" },
-  { from: "Chandigarh", to: "Manali", price: "4,499", km: "310 km" },
-  { from: "Lucknow", to: "Varanasi", price: "3,299", km: "320 km" },
-  { from: "Delhi", to: "Chandigarh", price: "2,999", km: "248 km" },
-  { from: "Delhi", to: "Haridwar", price: "2,799", km: "214 km" },
-  { from: "Delhi", to: "Dehradun", price: "3,199", km: "280 km" },
-  { from: "Mumbai", to: "Nashik", price: "2,499", km: "167 km" },
-  { from: "Mumbai", to: "Shirdi", price: "3,299", km: "241 km" },
-  { from: "Mumbai", to: "Aurangabad", price: "4,299", km: "335 km" },
-  { from: "Bangalore", to: "Chennai", price: "4,599", km: "346 km" },
-  { from: "Bangalore", to: "Hyderabad", price: "4,999", km: "570 km" },
-  { from: "Bangalore", to: "Coorg", price: "3,499", km: "257 km" },
-  { from: "Chennai", to: "Bangalore", price: "4,599", km: "346 km" },
-  { from: "Chennai", to: "Madurai", price: "4,199", km: "460 km" },
-  { from: "Hyderabad", to: "Bangalore", price: "4,999", km: "570 km" },
-  { from: "Jaipur", to: "Agra", price: "2,999", km: "235 km" },
-  { from: "Agra", to: "Mathura", price: "1,299", km: "60 km" },
-  { from: "Varanasi", to: "Prayagraj", price: "1,799", km: "125 km" },
-  { from: "Kolkata", to: "Siliguri", price: "5,499", km: "595 km" },
-  { from: "Indore", to: "Bhopal", price: "1,999", km: "192 km" },
-  { from: "Bhopal", to: "Jabalpur", price: "2,799", km: "296 km" },
-  { from: "Nagpur", to: "Nashik", price: "3,999", km: "480 km" },
-  { from: "Pune", to: "Mumbai", price: "1,999", km: "148 km" },
-  { from: "Surat", to: "Vadodara", price: "1,699", km: "154 km" },
-  { from: "Rajkot", to: "Dwarka", price: "2,499", km: "245 km" },
-  { from: "Amritsar", to: "Chandigarh", price: "2,299", km: "228 km" },
-  { from: "Shimla", to: "Manali", price: "3,999", km: "260 km" },
-  { from: "Jammu", to: "Srinagar", price: "5,499", km: "300 km" },
-  { from: "Kochi", to: "Munnar", price: "2,999", km: "130 km" },
-  { from: "Kochi", to: "Thiruvananthapuram", price: "3,799", km: "205 km" },
-  { from: "Coimbatore", to: "Ooty", price: "1,999", km: "86 km" },
-  { from: "Visakhapatnam", to: "Araku", price: "2,499", km: "112 km" },
-  { from: "Guwahati", to: "Shillong", price: "2,199", km: "100 km" },
+  { from: "Ahmedabad", to: "Vadodara", km: "113 km" },
+  { from: "Vadodara", to: "Ahmedabad", km: "113 km" },
+  { from: "Ahmedabad", to: "Mumbai", km: "524 km" },
+  { from: "Mumbai", to: "Ahmedabad", km: "524 km" },
+  { from: "Ahmedabad", to: "Udaipur", km: "262 km" },
+  { from: "Udaipur", to: "Ahmedabad", km: "262 km" },
+  { from: "Ahmedabad", to: "Jamnagar", km: "316 km" },
+  { from: "Jamnagar", to: "Ahmedabad", km: "316 km" },
+  { from: "Ahmedabad", to: "Dwarka", km: "448 km" },
+  { from: "Dwarka", to: "Ahmedabad", km: "448 km" },
+  { from: "Ahmedabad", to: "Surat", km: "265 km" },
+  { from: "Surat", to: "Ahmedabad", km: "265 km" },
+  { from: "Ahmedabad", to: "Rajkot", km: "216 km" },
+  { from: "Rajkot", to: "Ahmedabad", km: "216 km" },
+  { from: "Ahmedabad", to: "Jaipur", km: "672 km" },
+  { from: "Jaipur", to: "Ahmedabad", km: "672 km" },
+  { from: "Vadodara", to: "Surat", km: "154 km" },
+  { from: "Surat", to: "Vadodara", km: "154 km" },
+  { from: "Delhi", to: "Agra", km: "233 km" },
+  { from: "Agra", to: "Delhi", km: "233 km" },
+  { from: "Delhi", to: "Jaipur", km: "281 km" },
+  { from: "Jaipur", to: "Delhi", km: "281 km" },
+  { from: "Delhi", to: "Chandigarh", km: "248 km" },
+  { from: "Chandigarh", to: "Delhi", km: "248 km" },
+  { from: "Delhi", to: "Haridwar", km: "214 km" },
+  { from: "Haridwar", to: "Delhi", km: "214 km" },
+  { from: "Mumbai", to: "Pune", km: "148 km" },
+  { from: "Pune", to: "Mumbai", km: "148 km" },
+  { from: "Mumbai", to: "Nashik", km: "167 km" },
+  { from: "Nashik", to: "Mumbai", km: "167 km" },
+  { from: "Mumbai", to: "Shirdi", km: "241 km" },
+  { from: "Shirdi", to: "Mumbai", km: "241 km" },
+  { from: "Bangalore", to: "Mysore", km: "144 km" },
+  { from: "Mysore", to: "Bangalore", km: "144 km" },
+  { from: "Bangalore", to: "Chennai", km: "346 km" },
+  { from: "Chennai", to: "Bangalore", km: "346 km" },
+  { from: "Bangalore", to: "Coorg", km: "257 km" },
+  { from: "Coorg", to: "Bangalore", km: "257 km" },
+  { from: "Chennai", to: "Pondicherry", km: "162 km" },
+  { from: "Pondicherry", to: "Chennai", km: "162 km" },
+  { from: "Hyderabad", to: "Vijayawada", km: "275 km" },
+  { from: "Vijayawada", to: "Hyderabad", km: "275 km" },
+  { from: "Jaipur", to: "Jodhpur", km: "342 km" },
+  { from: "Jodhpur", to: "Jaipur", km: "342 km" },
+  { from: "Pune", to: "Goa", km: "456 km" },
+  { from: "Goa", to: "Pune", km: "456 km" },
+  { from: "Chandigarh", to: "Manali", km: "310 km" },
+  { from: "Manali", to: "Chandigarh", km: "310 km" },
+  { from: "Lucknow", to: "Varanasi", km: "320 km" },
+  { from: "Varanasi", to: "Lucknow", km: "320 km" },
+  { from: "Kochi", to: "Munnar", km: "130 km" },
+  { from: "Munnar", to: "Kochi", km: "130 km" },
+  { from: "Coimbatore", to: "Ooty", km: "86 km" },
+  { from: "Ooty", to: "Coimbatore", km: "86 km" },
+  { from: "Kolkata", to: "Digha", km: "187 km" },
+  { from: "Digha", to: "Kolkata", km: "187 km" },
+  { from: "Indore", to: "Bhopal", km: "192 km" },
+  { from: "Bhopal", to: "Indore", km: "192 km" },
+  { from: "Amritsar", to: "Chandigarh", km: "228 km" },
+  { from: "Chandigarh", to: "Amritsar", km: "228 km" },
+  { from: "Guwahati", to: "Shillong", km: "100 km" },
+  { from: "Shillong", to: "Guwahati", km: "100 km" },
 ];
 
 const popularCities = [
   "Delhi", "Mumbai", "Bangalore", "Chennai", "Kolkata", "Hyderabad",
   "Ahmedabad", "Pune", "Jaipur", "Lucknow", "Surat", "Vadodara",
-  "Indore", "Bhopal", "Nagpur", "Kochi", "Coimbatore", "Amritsar",
-  "Chandigarh", "Shimla", "Manali", "Varanasi", "Agra", "Goa",
+  "Rajkot", "Jamnagar", "Dwarka", "Udaipur", "Jodhpur", "Indore",
+  "Bhopal", "Nagpur", "Kochi", "Coimbatore", "Amritsar", "Chandigarh",
+  "Shimla", "Manali", "Varanasi", "Agra", "Goa", "Shirdi",
 ];
 
 export function PopularRoutes() {
@@ -66,7 +84,7 @@ export function PopularRoutes() {
               Popular Intercity Routes
             </h2>
             <p className="text-lg text-muted-foreground">
-              Book cabs on India's most traveled routes at the best prices. We operate across all 28 states and 500+ cities.
+              Book cabs on India's most traveled routes. We operate across all 28 states and 500+ cities.
             </p>
           </div>
         </div>
@@ -94,17 +112,14 @@ export function PopularRoutes() {
           {routes.map((route, idx) => (
             <div
               key={idx}
-              className="flex flex-col p-4 rounded-2xl border border-border bg-white hover:border-primary hover:shadow-md transition-all cursor-pointer group"
+              className="flex items-center justify-between p-4 rounded-2xl border border-border bg-white hover:border-primary hover:shadow-md transition-all cursor-pointer group"
             >
-              <div className="flex items-center gap-2 mb-2">
-                <div className="font-semibold text-secondary">{route.from}</div>
+              <div className="flex items-center gap-2 flex-1 min-w-0">
+                <span className="font-semibold text-secondary truncate">{route.from}</span>
                 <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                <div className="font-semibold text-secondary">{route.to}</div>
+                <span className="font-semibold text-secondary truncate">{route.to}</span>
               </div>
-              <div className="flex items-center justify-between mt-1">
-                <span className="text-xs text-muted-foreground">{route.km}</span>
-                <span className="text-sm font-bold text-primary">₹{route.price}</span>
-              </div>
+              <span className="text-xs text-muted-foreground ml-2 flex-shrink-0">{route.km}</span>
             </div>
           ))}
         </div>
