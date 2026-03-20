@@ -18,7 +18,8 @@ const routes = [
   { from: "Ahmedabad", to: "Rajkot", km: "216 km" },
   { from: "Rajkot", to: "Ahmedabad", km: "216 km" },
   { from: "Vadodara", to: "Surat", km: "154 km" },
-  { from: "Surat", to: "Vadodara", km: "154 km" },
+  { from: "Vadodara", to: "Mumbai", km: "400 km" },
+  { from: "Mumbai", to: "Vadodara", km: "400 km" },
   { from: "Ahmedabad", to: "Somnath", km: "408 km" },
   { from: "Somnath", to: "Ahmedabad", km: "408 km" },
 ];
