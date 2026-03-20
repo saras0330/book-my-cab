@@ -3,25 +3,25 @@ import { AnimatedSection } from "../AnimatedSection";
 import { motion } from "framer-motion";
 
 const routes = [
-  { from: "Ahmedabad", to: "Vadodara", km: "113 km" },
-  { from: "Vadodara", to: "Ahmedabad", km: "113 km" },
-  { from: "Ahmedabad", to: "Mumbai", km: "524 km" },
-  { from: "Mumbai", to: "Ahmedabad", km: "524 km" },
-  { from: "Ahmedabad", to: "Udaipur", km: "262 km" },
-  { from: "Udaipur", to: "Ahmedabad", km: "262 km" },
-  { from: "Ahmedabad", to: "Jamnagar", km: "316 km" },
-  { from: "Jamnagar", to: "Ahmedabad", km: "316 km" },
-  { from: "Ahmedabad", to: "Dwarka", km: "448 km" },
-  { from: "Dwarka", to: "Ahmedabad", km: "448 km" },
-  { from: "Ahmedabad", to: "Surat", km: "265 km" },
-  { from: "Surat", to: "Ahmedabad", km: "265 km" },
-  { from: "Ahmedabad", to: "Rajkot", km: "216 km" },
-  { from: "Rajkot", to: "Ahmedabad", km: "216 km" },
-  { from: "Vadodara", to: "Surat", km: "154 km" },
-  { from: "Vadodara", to: "Mumbai", km: "400 km" },
-  { from: "Mumbai", to: "Vadodara", km: "400 km" },
-  { from: "Ahmedabad", to: "Somnath", km: "408 km" },
-  { from: "Somnath", to: "Ahmedabad", km: "408 km" },
+  { from: "Ahmedabad", to: "Vadodara", km: "113 km", price: "₹1,299" },
+  { from: "Vadodara", to: "Ahmedabad", km: "113 km", price: "₹1,299" },
+  { from: "Ahmedabad", to: "Mumbai", km: "524 km", price: "₹5,499" },
+  { from: "Mumbai", to: "Ahmedabad", km: "524 km", price: "₹5,499" },
+  { from: "Ahmedabad", to: "Udaipur", km: "262 km", price: "₹2,799" },
+  { from: "Udaipur", to: "Ahmedabad", km: "262 km", price: "₹2,799" },
+  { from: "Ahmedabad", to: "Jamnagar", km: "316 km", price: "₹3,299" },
+  { from: "Jamnagar", to: "Ahmedabad", km: "316 km", price: "₹3,299" },
+  { from: "Ahmedabad", to: "Dwarka", km: "448 km", price: "₹4,499" },
+  { from: "Dwarka", to: "Ahmedabad", km: "448 km", price: "₹4,499" },
+  { from: "Ahmedabad", to: "Surat", km: "265 km", price: "₹2,799" },
+  { from: "Surat", to: "Ahmedabad", km: "265 km", price: "₹2,799" },
+  { from: "Ahmedabad", to: "Rajkot", km: "216 km", price: "₹2,299" },
+  { from: "Rajkot", to: "Ahmedabad", km: "216 km", price: "₹2,299" },
+  { from: "Vadodara", to: "Surat", km: "154 km", price: "₹1,699" },
+  { from: "Vadodara", to: "Mumbai", km: "400 km", price: "₹4,199" },
+  { from: "Mumbai", to: "Vadodara", km: "400 km", price: "₹4,199" },
+  { from: "Ahmedabad", to: "Somnath", km: "408 km", price: "₹4,299" },
+  { from: "Somnath", to: "Ahmedabad", km: "408 km", price: "₹4,299" },
 ];
 
 const popularCities = [
@@ -276,19 +276,17 @@ export function PopularRoutes() {
               variants={itemVariants}
               whileHover={{ scale: 1.03, y: -5 }}
               whileTap={{ scale: 0.98 }}
-              className="flex items-center justify-between p-4 rounded-2xl glass border border-white/5 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(255,183,0,0.2)] transition-all cursor-pointer group"
+              className="flex flex-col p-4 rounded-2xl glass border border-white/5 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(255,183,0,0.2)] transition-all cursor-pointer group"
             >
-              <div className="flex items-center gap-3 flex-1 min-w-0">
+              <div className="flex items-center gap-2 flex-1 min-w-0 mb-2">
                 <span className="font-semibold text-white/90 truncate group-hover:text-white transition-colors">{route.from}</span>
-                <motion.div
-                  initial={{ x: 0 }}
-                  whileHover={{ x: 5 }}
-                >
-                  <ArrowRight className="w-4 h-4 text-primary group-hover:glow-primary transition-colors flex-shrink-0" />
-                </motion.div>
+                <ArrowRight className="w-4 h-4 text-primary flex-shrink-0" />
                 <span className="font-semibold text-white/90 truncate group-hover:text-white transition-colors">{route.to}</span>
               </div>
-              <span className="text-xs font-medium px-2 py-1 rounded-md bg-white/5 text-white/60 ml-2 flex-shrink-0 border border-white/5 group-hover:border-primary/30 group-hover:text-primary transition-colors">{route.km}</span>
+              <div className="flex items-center justify-between mt-1">
+                <span className="text-xs text-white/40">{route.km}</span>
+                <span className="text-sm font-bold text-primary group-hover:shadow-[0_0_8px_rgba(255,183,0,0.6)] transition-all">{route.price}</span>
+              </div>
             </motion.div>
           ))}
         </motion.div>
