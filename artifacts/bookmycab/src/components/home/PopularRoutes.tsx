@@ -19,11 +19,13 @@ const routes = [
   { from: "Rajkot", to: "Ahmedabad", km: "216 km" },
   { from: "Vadodara", to: "Surat", km: "154 km" },
   { from: "Surat", to: "Vadodara", km: "154 km" },
+  { from: "Ahmedabad", to: "Somnath", km: "408 km" },
+  { from: "Somnath", to: "Ahmedabad", km: "408 km" },
 ];
 
 const popularCities = [
   "Mumbai", "Ahmedabad", "Surat", "Vadodara",
-  "Rajkot", "Jamnagar", "Dwarka", "Udaipur",
+  "Rajkot", "Jamnagar", "Dwarka", "Udaipur", "Somnath",
 ];
 
 const containerVariants = {
@@ -184,6 +186,50 @@ export function PopularRoutes() {
           <div className="absolute top-4 right-4">
             <span className="text-sm font-medium bg-black/50 backdrop-blur-sm border border-white/10 text-white/80 px-4 py-2 rounded-full">
               524 km
+            </span>
+          </div>
+        </motion.div>
+
+        {/* Featured Route - Ahmedabad to Somnath */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mb-12 relative overflow-hidden rounded-3xl border border-white/10 group cursor-pointer"
+          whileHover={{ scale: 1.01 }}
+        >
+          <img
+            src="/images/somnath.jpg"
+            alt="Somnath"
+            className="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+          <div className="absolute inset-0 flex flex-col justify-end p-8">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-xs font-semibold uppercase tracking-widest text-primary border border-primary/40 rounded-full px-3 py-1 bg-primary/10 backdrop-blur-sm">
+                Featured Route
+              </span>
+            </div>
+            <div className="flex items-center gap-4 mb-2">
+              <span className="text-2xl md:text-4xl font-bold text-white">Ahmedabad</span>
+              <motion.div
+                animate={{ x: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              >
+                <ArrowRight className="w-7 h-7 text-primary" />
+              </motion.div>
+              <span className="text-2xl md:text-4xl font-bold text-primary" style={{ textShadow: "0 0 20px rgba(255,183,0,0.6)" }}>
+                Somnath
+              </span>
+            </div>
+            <p className="text-white/70 text-sm md:text-base max-w-xl">
+              One of the 12 Jyotirlingas of Lord Shiva — a divine coastal temple standing majestically by the Arabian Sea. 408 km from Ahmedabad.
+            </p>
+          </div>
+          <div className="absolute top-4 right-4">
+            <span className="text-sm font-medium bg-black/50 backdrop-blur-sm border border-white/10 text-white/80 px-4 py-2 rounded-full">
+              408 km
             </span>
           </div>
         </motion.div>
