@@ -18,21 +18,11 @@ const routes = [
   { from: "Rajkot", to: "Ahmedabad", km: "216 km" },
   { from: "Vadodara", to: "Surat", km: "154 km" },
   { from: "Surat", to: "Vadodara", km: "154 km" },
-  { from: "Mumbai", to: "Nashik", km: "167 km" },
-  { from: "Nashik", to: "Mumbai", km: "167 km" },
-  { from: "Kochi", to: "Munnar", km: "130 km" },
-  { from: "Munnar", to: "Kochi", km: "130 km" },
-  { from: "Kolkata", to: "Digha", km: "187 km" },
-  { from: "Digha", to: "Kolkata", km: "187 km" },
-  { from: "Indore", to: "Bhopal", km: "192 km" },
-  { from: "Bhopal", to: "Indore", km: "192 km" },
 ];
 
 const popularCities = [
-  "Mumbai", "Kolkata", "Ahmedabad", "Lucknow", "Surat", "Vadodara",
-  "Rajkot", "Jamnagar", "Dwarka", "Udaipur", "Jodhpur", "Indore",
-  "Bhopal", "Nagpur", "Kochi", "Coimbatore", "Amritsar",
-  "Manali", "Agra", "Goa", "Nashik",
+  "Mumbai", "Ahmedabad", "Surat", "Vadodara",
+  "Rajkot", "Jamnagar", "Dwarka", "Udaipur",
 ];
 
 export function PopularRoutes() {
