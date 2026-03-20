@@ -38,11 +38,11 @@ export default function Home() {
           style={{ y, opacity }}
           className="absolute inset-0 z-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/50 to-background z-10" />
           <img 
             src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
             alt="Map Network Background" 
-            className="w-full h-full object-cover opacity-30 mix-blend-screen"
+            className="w-full h-full object-cover opacity-45"
           />
         </motion.div>
 
