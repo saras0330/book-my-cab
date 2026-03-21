@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from "react";
 const stats = [
   { value: 500, suffix: "+", label: "Cities Covered" },
   { value: 10, suffix: "K+", label: "Verified Drivers" },
-  { value: 1, suffix: "M+", label: "Trips Completed" },
+  { value: 50, suffix: "K+", label: "Trips Completed" },
   { value: 28, suffix: "", label: "States Presence" },
 ];
 
