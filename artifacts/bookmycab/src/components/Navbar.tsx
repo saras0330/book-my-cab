@@ -71,7 +71,7 @@ export function Navbar() {
           {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-4">
             <a 
-              href="tel:+919999000111"
+              href="tel:+917779012148"
               className="hidden lg:flex items-center gap-2 text-sm font-bold group"
             >
               <motion.div 
@@ -80,7 +80,7 @@ export function Navbar() {
               >
                 <PhoneCall className="w-4 h-4" />
               </motion.div>
-              <span className="text-white group-hover:text-primary transition-colors">+91 9999-000-111</span>
+              <span className="text-white group-hover:text-primary transition-colors">+91 7779012148</span>
             </a>
             
             <motion.button 
