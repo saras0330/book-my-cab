@@ -82,7 +82,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 group">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5 group-hover:glow-primary transition-all" />
-                <span className="text-white/60 group-hover:text-white/90 transition-colors">BookMyCab HQ, Connaught Place, New Delhi, India 110001</span>
+                <span className="text-white/60 group-hover:text-white/90 transition-colors">Near Airport, Bhaat Circle, Ahmedabad, Gujarat, India</span>
               </li>
               <li className="flex items-center gap-3 group">
                 <Phone className="w-5 h-5 text-primary shrink-0 group-hover:glow-primary transition-all" />
