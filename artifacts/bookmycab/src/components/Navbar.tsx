@@ -16,11 +16,12 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
+const navLinks = [
     { name: "Services", href: "#services" },
     { name: "Popular Routes", href: "#routes" },
     { name: "Our Fleet", href: "#fleet" },
     { name: "Contact", href: "#contact" },
+    { name: "Admin", href: "/admin" },
   ];
 
   return (
@@ -87,7 +88,7 @@ export function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               animate={{ 
-                boxShadow: ["0px 0px 10px rgba(255,183,0,0.4)", "0px 0px 20px rgba(255,183,0,0.8)", "0px 0px 10px rgba(255,183,0,0.4)"] 
+                boxShadow: ["0px 0px 10px rgba(255, 0, 0, 0.4)", "0px 0px 20px rgba(255, 0, 0, 0.8)", "0px 0px 10px rgba(255, 4, 0, 0.4)"] 
               }}
               transition={{ repeat: Infinity, duration: 2 }}
               className="hidden md:block px-6 py-2.5 rounded-full font-bold bg-primary text-primary-foreground btn-glow border border-primary/50"

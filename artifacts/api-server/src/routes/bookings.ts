@@ -1,106 +1,108 @@
-import { Router } from "express";
-import { db, bookingsTable, insertBookingSchema } from "@workspace/db";
-import { eq, desc } from "drizzle-orm";
+import { Router, Request, Response } from "express";
 import { z } from "zod";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const router = Router();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const DB_PATH = path.join(__dirname, "../../bookings.json");
+
+interface Booking {
+  id: number;
+  name: string;
+  phone: string;
+  tripType: string;
+  pickupCity: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
+  email?: string;
+  dropCity?: string;
+  localPackage?: string;
+  travelDate: string;
+  returnDate?: string;
+  passengers: string;
+  notes?: string;
+}
+
+let bookings: Booking[] = [];
+
+async function loadBookings(): Promise<void> {
+  try {
+    const data = await fs.readFile(DB_PATH, "utf8");
+    const parsed = JSON.parse(data) as Booking[];
+    bookings = parsed;
+  } catch {
+    bookings = [];
+  }
+}
+
+async function saveBookings(): Promise<void> {
+  await fs.writeFile(DB_PATH, JSON.stringify(bookings, null, 2));
+}
+
+// Load on module init
+loadBookings().catch(console.error);
+
 const createBookingBody = z.object({
-  name: z.string().min(2, "Name is required"),
-  phone: z.string().min(10, "Valid phone number is required"),
-  email: z.string().email().optional().or(z.literal("")),
+  name: z.string().min(2),
+  phone: z.string().min(10),
+  email: z.string().optional(),
   tripType: z.enum(["one-way", "round-trip", "local"]),
-  pickupCity: z.string().min(1, "Pickup city is required"),
+  pickupCity: z.string().min(1),
   dropCity: z.string().optional(),
   localPackage: z.string().optional(),
-  travelDate: z.string().min(1, "Travel date is required"),
+  travelDate: z.string().min(1),
   returnDate: z.string().optional(),
   passengers: z.string().min(1),
   notes: z.string().optional(),
 });
 
-router.post("/bookings", async (req, res) => {
+router.post("/bookings", async (req: Request, res: Response) => {
   try {
+    console.log('📥 Incoming booking request:', req.body);
     const parsed = createBookingBody.safeParse(req.body);
     if (!parsed.success) {
-      res.status(400).json({ error: "Validation failed", details: parsed.error.flatten() });
+      const errorDetails = parsed.error.flatten();
+      console.log('Validation failed:', errorDetails);
+      res.status(400).json({ error: "Validation failed", details: errorDetails });
       return;
     }
 
     const data = parsed.data;
 
-    const [booking] = await db.insert(bookingsTable).values({
-      name: data.name,
-      phone: data.phone,
-      email: data.email || null,
-      tripType: data.tripType,
-      pickupCity: data.pickupCity,
-      dropCity: data.dropCity || null,
-      localPackage: data.localPackage || null,
-      travelDate: data.travelDate,
-      returnDate: data.returnDate || null,
-      passengers: data.passengers,
-      notes: data.notes || null,
-    }).returning();
+    const newBooking: Booking = {
+      id: Date.now(),
+      ...data,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
 
-    res.status(201).json({ success: true, booking });
+    bookings.unshift(newBooking);
+    await saveBookings();
+    console.log('🆕 New booking created:', newBooking.id, newBooking.name, newBooking.pickupCity);
+    res.status(201).json({ success: true, booking: newBooking });
   } catch (err) {
     console.error("Error creating booking:", err);
     res.status(500).json({ error: "Failed to create booking" });
   }
 });
 
-router.get("/bookings", async (_req, res) => {
+router.get("/bookings", async (_req: Request, res: Response) => {
   try {
-    const bookings = await db.select().from(bookingsTable).orderBy(desc(bookingsTable.createdAt));
-    res.json({ bookings });
+    await loadBookings();
+    const sortedBookings = [...bookings].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    console.log(`📋 Fetched ${sortedBookings.length} bookings`);
+    res.json({ bookings: sortedBookings });
   } catch (err) {
     console.error("Error fetching bookings:", err);
     res.status(500).json({ error: "Failed to fetch bookings" });
   }
 });
 
-router.get("/bookings/:id", async (req, res) => {
-  try {
-    const id = Number(req.params.id);
-    if (isNaN(id)) {
-      res.status(400).json({ error: "Invalid booking ID" });
-      return;
-    }
-    const [booking] = await db.select().from(bookingsTable).where(eq(bookingsTable.id, id));
-    if (!booking) {
-      res.status(404).json({ error: "Booking not found" });
-      return;
-    }
-    res.json({ booking });
-  } catch (err) {
-    console.error("Error fetching booking:", err);
-    res.status(500).json({ error: "Failed to fetch booking" });
-  }
-});
-
-router.patch("/bookings/:id/status", async (req, res) => {
-  try {
-    const id = Number(req.params.id);
-    const { status } = req.body;
-    if (!["pending", "confirmed", "cancelled", "completed"].includes(status)) {
-      res.status(400).json({ error: "Invalid status" });
-      return;
-    }
-    const [updated] = await db
-      .update(bookingsTable)
-      .set({ status, updatedAt: new Date() })
-      .where(eq(bookingsTable.id, id))
-      .returning();
-    if (!updated) {
-      res.status(404).json({ error: "Booking not found" });
-      return;
-    }
-    res.json({ success: true, booking: updated });
-  } catch (err) {
-    console.error("Error updating booking:", err);
-    res.status(500).json({ error: "Failed to update booking" });
-  }
-});
-
 export default router;
+

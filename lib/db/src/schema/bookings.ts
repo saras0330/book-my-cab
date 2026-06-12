@@ -1,33 +1,22 @@
-import { pgTable, serial, text, timestamp, varchar, integer } from "drizzle-orm/pg-core";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { z } from "zod/v4";
+import { sqliteTable, text, integer, timestamp } from 'drizzle-orm/sqlite-core';
 
-export const bookingsTable = pgTable("bookings", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 255 }).notNull(),
-  phone: varchar("phone", { length: 20 }).notNull(),
-  email: varchar("email", { length: 255 }),
-  tripType: varchar("trip_type", { length: 20 }).notNull(),
-  pickupCity: varchar("pickup_city", { length: 255 }).notNull(),
-  dropCity: varchar("drop_city", { length: 255 }),
-  localPackage: varchar("local_package", { length: 50 }),
-  travelDate: varchar("travel_date", { length: 20 }).notNull(),
-  returnDate: varchar("return_date", { length: 20 }),
-  passengers: varchar("passengers", { length: 10 }).notNull(),
-  status: varchar("status", { length: 20 }).notNull().default("pending"),
-  notes: text("notes"),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
-  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+export const bookings = sqliteTable('bookings', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  name: text('name').notNull(),
+  phone: text('phone').notNull(),
+  email: text('email'),
+  pickupCity: text('pickup_city').notNull(),
+  dropCity: text('drop_city'),
+  tripType: text('trip_type').notNull(),
+  status: text('status').notNull().$default('pending'),
+  travelDate: text('travel_date').notNull(),
+  returnDate: text('return_date'),
+  passengers: text('passengers').notNull(),
+  notes: text('notes'),
+  createdAt: timestamp('created_at', { mode: 'string' }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { mode: 'string' }).defaultNow().notNull(),
 });
 
-export const insertBookingSchema = createInsertSchema(bookingsTable).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-  status: true,
-});
+export type Booking = typeof bookings.$inferSelect;
+export type NewBooking = typeof bookings.$inferInsert;
 
-export const selectBookingSchema = createSelectSchema(bookingsTable);
-
-export type InsertBooking = z.infer<typeof insertBookingSchema>;
-export type Booking = typeof bookingsTable.$inferSelect;
